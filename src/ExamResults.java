@@ -12,7 +12,7 @@ public class ExamResults implements Serializable {
     @JsonProperty("description")
     String description;
 
-    final String[] discipline = {"English", "Math", "Programming", "Physics", "Chemistry"};
+    public static final String[] discipline = {"English", "Math", "Programming", "Physics", "Chemistry"};
     public static final int MARK_COUNT = 5;
 
     public ExamResults() {

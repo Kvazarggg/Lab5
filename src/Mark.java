@@ -1,9 +1,6 @@
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.io.Serializable;
 
 public class Mark implements Serializable {
-   // @JsonProperty("mark")
     String subjectName;
     String teacherName;
     int mark;
