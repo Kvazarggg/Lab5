@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class ExamResult {
+public class ExamResult implements Serializable {
     String f;
     String i;
     String o;
@@ -10,7 +11,7 @@ public class ExamResult {
     Mark[] result = new Mark[5];
 
     public ExamResult(String f, String i, String o, int numberGradeBook, String facultyName, int course,
-                      Mark m1, Mark m2, Mark m3, Mark m4, Mark m5){
+                      Mark m1, Mark m2, Mark m3, Mark m4, Mark m5) {
         this.setF(f);
         this.setI(i);
         this.setO(o);

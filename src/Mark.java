@@ -1,13 +1,16 @@
-public class Mark {
+import java.io.Serializable;
+
+public class Mark implements Serializable {
     String subjectName;
     String teacherName;
     int mark;
 
-    public Mark(String subjectName, String teacherName, int mark){
+    public Mark(String subjectName, String teacherName, int mark) {
         this.setSubjectName(subjectName);
         this.setTeacherName(teacherName);
         this.setMark(mark);
     }
+
     public String getSubjectName() {
         return subjectName;
     }
@@ -36,8 +39,7 @@ public class Mark {
         int m = -1;
         try {
             m = Integer.parseInt(value) > 0 && Integer.parseInt(value) <= 5 ? Integer.parseInt(value) : -1;
-        } catch (NumberFormatException e)
-        {
+        } catch (NumberFormatException e) {
             m = -1;
         }
         return m;

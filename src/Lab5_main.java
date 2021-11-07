@@ -56,7 +56,9 @@ public class Lab5_main {
             System.out.println("[5] - Удаление студентов-двоечников");
             System.out.println("[6] - Сохранение в файл");
             System.out.println("[7] - Загрузить из файла");
-            System.out.println("[8] - Загрузить резервную копию");
+            System.out.println("[8] - Сериализация базы данных");
+            System.out.println("[9] - Десериализация базы данных");
+            System.out.println("[10] - Загрузить резервную копию");
             System.out.println("[0] - Выход из программы");
             System.out.println(Color.RESET);
             do {
@@ -83,7 +85,7 @@ public class Lab5_main {
                     exRes.RemoveBadStudents();
                     break;
                 case 6:
-                    System.out.print("\nВведите путь для сохранения файл:");
+                    System.out.print("\nВведите путь для сохранения файла:");
                     String saveFileName = in.nextLine();
                     exRes.saveFile(saveFileName);
                     break;
@@ -93,6 +95,16 @@ public class Lab5_main {
                     exRes.loadFile(loadFileName);
                     break;
                 case 8:
+                    System.out.print("\nВведите путь для сохранения файла:");
+                    String serializeFileName = in.nextLine();
+                    exRes.serializeFile(serializeFileName);
+                    break;
+                case 9:
+                    System.out.print("\nВведите путь к базе данных:");
+                    String deserializeFileName = in.nextLine();
+                    exRes.deserializeFile(deserializeFileName);
+                    break;
+                case 10:
                     FileWork name = new FileWork();
                     exRes.loadFile(name.lastReserveName());
                     break;

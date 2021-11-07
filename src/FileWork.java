@@ -4,12 +4,40 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class FileWork {
+public class FileWork implements Serializable {
 
     public static final int MARKS_COUNT = 5;
     public static final int DELIMITER_BYTE_VALUE = 46;
     private static FileOutputStream outFile;
     private static FileInputStream inFile;
+
+    public void serialize(ExamResults examResults, String fileName) throws IOException {
+        try {
+            FileOutputStream fileOut = new FileOutputStream(fileName);
+            ObjectOutputStream outOOS = new ObjectOutputStream(fileOut);
+            outOOS.writeObject(examResults);
+            outOOS.close();
+            fileOut.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        examResults.examResults.clear();
+    }
+
+    public void deserialize(ExamResults examResults, String fileName) throws IOException {
+        try {
+            FileInputStream fileIn = new FileInputStream(fileName);
+            ObjectInputStream inOIS = new ObjectInputStream(fileIn);
+            examResults = (ExamResults) inOIS.readObject();
+            inOIS.close();
+            fileIn.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException с) {
+            System.out.println("Not found!");
+            с.printStackTrace();
+        }
+    }
 
     public void saveBinary(ArrayList<ExamResult> examResults, String fileName) throws IOException {
 
@@ -91,26 +119,26 @@ public class FileWork {
     public void save(ArrayList<ExamResult> examResults, String fileName) throws IOException {
         FileWriter outStream = new FileWriter(fileName);
         BufferedWriter bw = new BufferedWriter(outStream);
-        for (ExamResult object : examResults) {
+        for (ExamResult student : examResults) {
             try {
-                bw.write(object.getF());
+                bw.write(student.getF());
                 bw.write(System.lineSeparator());
-                bw.write(object.getI());
+                bw.write(student.getI());
                 bw.write(System.lineSeparator());
-                bw.write(object.getO());
+                bw.write(student.getO());
                 bw.write(System.lineSeparator());
-                bw.write(String.valueOf(object.getNumberGradeBook()));
+                bw.write(String.valueOf(student.getNumberGradeBook()));
                 bw.write(System.lineSeparator());
-                bw.write(object.getFacultyName());
+                bw.write(student.getFacultyName());
                 bw.write(System.lineSeparator());
-                bw.write(String.valueOf(object.getCourse()));
+                bw.write(String.valueOf(student.getCourse()));
                 bw.write(System.lineSeparator());
                 for (int i = 0; i < MARKS_COUNT; i++) {
-                    bw.write(object.result[i].getTeacherName());
+                    bw.write(student.result[i].getTeacherName());
                     bw.write(System.lineSeparator());
-                    bw.write(object.result[i].getSubjectName());
+                    bw.write(student.result[i].getSubjectName());
                     bw.write(System.lineSeparator());
-                    bw.write(String.valueOf(object.result[i].getMark()));
+                    bw.write(String.valueOf(student.result[i].getMark()));
                     bw.write(System.lineSeparator());
                 }
             } catch (IOException e) {

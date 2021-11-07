@@ -1,8 +1,9 @@
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
-import  java.util.Collections;
+import java.util.Collections;
 
-public class ExamResults {
+public class ExamResults implements Serializable {
 
     public static final int MARK_COUNT = 5;
     ArrayList<ExamResult> examResults;
@@ -34,7 +35,8 @@ public class ExamResults {
     }
 
     public void IsBadStudent() {
-        St: for (ExamResult object : examResults) {
+        St:
+        for (ExamResult object : examResults) {
             for (int i = 0; i < MARK_COUNT; i++) {
                 if (object.result[i].getMark() == 2) {
                     {
@@ -59,7 +61,7 @@ public class ExamResults {
     }
 
     public void SubjectWithBadMark() {
-        int marks[] = {0,0,0,0,0};
+        int marks[] = {0, 0, 0, 0, 0};
         for (ExamResult object : examResults) {
             for (int i = 0; i < MARK_COUNT; i++) {
                 if (object.result[i].getSubjectName().equals(discipline[0]) && object.result[i].getMark() == 2) {
@@ -85,19 +87,19 @@ public class ExamResults {
             counters.add(marks[i]);
         }
 
-        if (marks[0] == Collections.max(counters)){
+        if (marks[0] == Collections.max(counters)) {
             System.out.println(discipline[0] + " - " + marks[0]);
         }
-        if (marks[1] == Collections.max(counters)){
+        if (marks[1] == Collections.max(counters)) {
             System.out.println(discipline[1] + " - " + marks[1]);
         }
-        if (marks[2] == Collections.max(counters)){
+        if (marks[2] == Collections.max(counters)) {
             System.out.println(discipline[2] + " - " + marks[2]);
         }
-        if (marks[3] == Collections.max(counters)){
+        if (marks[3] == Collections.max(counters)) {
             System.out.println(discipline[3] + " - " + marks[3]);
         }
-        if (marks[4] == Collections.max(counters)){
+        if (marks[4] == Collections.max(counters)) {
             System.out.println(discipline[4] + " - " + marks[4]);
         }
     }
@@ -110,6 +112,16 @@ public class ExamResults {
     void loadFile(String fileName) throws IOException {
         FileWork loadToBase = new FileWork();
         loadToBase.loadBinary(examResults, fileName);
+    }
+
+    void serializeFile(String fileName) throws IOException {
+        FileWork saveToFile = new FileWork();
+        saveToFile.serialize(this, fileName);
+    }
+
+    void deserializeFile(String fileName) throws IOException {
+        FileWork loadToBase = new FileWork();
+        loadToBase.deserialize(this, fileName);
     }
 
     @Override
