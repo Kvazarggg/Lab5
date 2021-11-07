@@ -16,7 +16,7 @@ public class Lab5_main {
         return func;
     }
 
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         final String[] discipline = {"English", "Math", "Programming", "Physics", "Chemistry"};
         int function;
         Scanner in = new Scanner(System.in);
@@ -58,7 +58,9 @@ public class Lab5_main {
             System.out.println("[7] - Загрузить из файла");
             System.out.println("[8] - Сериализация базы данных");
             System.out.println("[9] - Десериализация базы данных");
-            System.out.println("[10] - Загрузить резервную копию");
+            System.out.println("[10] - Сериализация Jackson базы данных");
+            System.out.println("[11] - Десериализация Jackson базы данных");
+            System.out.println("[12] - Загрузить резервную копию");
             System.out.println("[0] - Выход из программы");
             System.out.println(Color.RESET);
             do {
@@ -105,6 +107,16 @@ public class Lab5_main {
                     exRes.deserializeFile(deserializeFileName);
                     break;
                 case 10:
+                    System.out.print("\nВведите путь для сохранения файла:");
+                    String jacksonSerializeFileName = in.nextLine();
+                    exRes.JacksonSerializeFile(jacksonSerializeFileName);
+                    break;
+                case 11:
+                    System.out.print("\nВведите путь к базе данных:");
+                    String jacksonDeserializeFileName = in.nextLine();
+                    exRes.jacksonDeserializeFile(jacksonDeserializeFileName);
+                    break;
+                case 12:
                     FileWork name = new FileWork();
                     exRes.loadFile(name.lastReserveName());
                     break;

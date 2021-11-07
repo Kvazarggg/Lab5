@@ -1,15 +1,22 @@
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.IOException;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class ExamResults implements Serializable {
-
-    public static final int MARK_COUNT = 5;
+    @JsonProperty("examResults")
     ArrayList<ExamResult> examResults;
+    @JsonProperty("description")
+    String description;
+
     final String[] discipline = {"English", "Math", "Programming", "Physics", "Chemistry"};
+    public static final int MARK_COUNT = 5;
 
     public ExamResults() {
+        description = LocalDate.now().toString();
         this.examResults = new ArrayList<>();
     }
 
@@ -122,6 +129,17 @@ public class ExamResults implements Serializable {
     void deserializeFile(String fileName) throws IOException {
         FileWork loadToBase = new FileWork();
         loadToBase.deserialize(this, fileName);
+    }
+
+    void JacksonSerializeFile(String fileName) throws IOException {
+        FileWork saveToFile = new FileWork();
+        saveToFile.jacksonSerialize(this, fileName);
+        examResults.clear();
+    }
+
+    void jacksonDeserializeFile(String fileName) throws IOException {
+        FileWork loadToBase = new FileWork();
+        this.examResults = loadToBase.jacksonDeSerialize(examResults, fileName);
     }
 
     @Override

@@ -1,7 +1,10 @@
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.util.Arrays;
 
 public class ExamResult implements Serializable {
+    @JsonProperty("examResult")
     String f;
     String i;
     String o;

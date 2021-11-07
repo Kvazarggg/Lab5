@@ -1,3 +1,11 @@
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -5,6 +13,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class FileWork implements Serializable {
+    @JsonProperty("examResults")
 
     public static final int MARKS_COUNT = 5;
     public static final int DELIMITER_BYTE_VALUE = 46;
@@ -37,6 +46,19 @@ public class FileWork implements Serializable {
             System.out.println("Not found!");
             с.printStackTrace();
         }
+    }
+
+    public void jacksonSerialize(ExamResults examResults, String fileName) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+        objectMapper.writeValue(new File(fileName), examResults);
+    }
+
+    public ArrayList jacksonDeSerialize(ArrayList<ExamResult> examResults, String fileName) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        ExamResults newExamResults = objectMapper.readValue(new File(fileName), ExamResults.class);
+        return examResults = newExamResults.examResults;
     }
 
     public void saveBinary(ArrayList<ExamResult> examResults, String fileName) throws IOException {
