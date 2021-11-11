@@ -11,6 +11,7 @@ public class ExamResults implements Serializable {
     ArrayList<ExamResult> examResults;
     @JsonProperty("description")
     String description;
+    static final long serialVersionUID = 656565665L;
 
     public static final String[] discipline = {"English", "Math", "Programming", "Physics", "Chemistry"};
     public static final int MARK_COUNT = 5;
@@ -18,6 +19,11 @@ public class ExamResults implements Serializable {
     public ExamResults() {
         description = LocalDate.now().toString();
         this.examResults = new ArrayList<>();
+    }
+
+    public ExamResults(ExamResults examResults) {
+        this.examResults = examResults.examResults;
+        this.description = examResults.description;
     }
 
     void add(ExamResult examRes) {
@@ -128,7 +134,9 @@ public class ExamResults implements Serializable {
 
     void deserializeFile(String fileName) throws IOException {
         FileWork loadToBase = new FileWork();
-        loadToBase.deserialize(this, fileName);
+        ExamResults er = new ExamResults(loadToBase.deserialize(fileName));
+        this.examResults = er.examResults;
+        this.description = er.description;
     }
 
     void JacksonSerializeFile(String fileName) throws IOException {

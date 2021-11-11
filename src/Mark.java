@@ -1,6 +1,7 @@
 import java.io.Serializable;
 
 public class Mark implements Serializable {
+    static final long serialVersionUID = 2323232323L;
     String subjectName;
     String teacherName;
     int mark;
@@ -9,6 +10,9 @@ public class Mark implements Serializable {
         this.setSubjectName(subjectName);
         this.setTeacherName(teacherName);
         this.setMark(mark);
+    }
+
+    public Mark(){
     }
 
     public String getSubjectName() {

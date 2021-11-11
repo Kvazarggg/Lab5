@@ -21,7 +21,7 @@ public class Lab5_main {
         int function;
         Scanner in = new Scanner(System.in);
 
-        exRes.add(new ExamResult("Zhuravlev", "David", "Timofeevich", 1, "IKS", 2,
+        /*exRes.add(new ExamResult("Zhuravlev", "David", "Timofeevich", 1, "IKS", 2,
                 new Mark(discipline[0], "Kudryashova", 5), new Mark(discipline[1], "Fedorov", 4),
                 new Mark(discipline[2], "Gavrilov", 4), new Mark(discipline[3], "Aleksandrov", 5),
                 new Mark(discipline[4], "Zayceva", 5)));
@@ -44,7 +44,9 @@ public class Lab5_main {
         exRes.add(new ExamResult("Gorbunova", "Anastasiya", "Stepanovna", 5, "HTF", 3,
                 new Mark(discipline[0], "Markova", 5), new Mark(discipline[1], "Novikov", 2),
                 new Mark(discipline[2], "Gavrilov", 3), new Mark(discipline[3], "Sharapov", 2),
-                new Mark(discipline[4], "Gulyaev", 4)));
+                new Mark(discipline[4], "Gulyaev", 4)));*/
+
+        //exRes.examResults.clear();
 
         do {
             System.out.println(Color.CYAN_BOLD);

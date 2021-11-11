@@ -1,17 +1,16 @@
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.io.Serializable;
 import java.util.Arrays;
 
 public class ExamResult implements Serializable {
-    @JsonProperty("examResult")
-    String f;
-    String i;
-    String o;
-    int numberGradeBook;
-    String facultyName;
-    int course;
-    Mark[] result = new Mark[5];
+    static final long serialVersionUID = 454564564564564L;
+    public String f;
+    public String i;
+    public String o;
+    public int numberGradeBook;
+    public String facultyName;
+    public int course;
+    public Mark[] result = new Mark[5];
+
 
     public ExamResult(String f, String i, String o, int numberGradeBook, String facultyName, int course,
                       Mark m1, Mark m2, Mark m3, Mark m4, Mark m5) {
@@ -28,6 +27,8 @@ public class ExamResult implements Serializable {
         result[3] = m4;
         result[4] = m5;
     }
+
+    public ExamResult(){}
 
     public String getF() {
         return f;

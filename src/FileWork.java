@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class FileWork implements Serializable {
+public class FileWork {
     @JsonProperty("examResults")
 
     public static final int MARKS_COUNT = 5;
@@ -30,14 +30,15 @@ public class FileWork implements Serializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        examResults.examResults.clear();
+        // examResults.examResults.clear();
     }
 
-    public void deserialize(ExamResults examResults, String fileName) throws IOException {
+    public ExamResults deserialize(String fileName) throws IOException {
+        ExamResults examResults = null;
         try {
             FileInputStream fileIn = new FileInputStream(fileName);
             ObjectInputStream inOIS = new ObjectInputStream(fileIn);
-            examResults = (ExamResults) inOIS.readObject();
+           examResults = (ExamResults) inOIS.readObject();
             inOIS.close();
             fileIn.close();
         } catch (IOException e) {
@@ -46,6 +47,7 @@ public class FileWork implements Serializable {
             System.out.println("Not found!");
             с.printStackTrace();
         }
+        return examResults;
     }
 
     public void jacksonSerialize(ExamResults examResults, String fileName) throws IOException {
